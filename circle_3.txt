@@ -1,0 +1,47 @@
+#include <windows.h>
+#include <GL/glut.h>
+//
+float _angle = 0.0;
+
+float x = 0.0;
+float y = 0.0;
+float z = 1.0;
+//
+void Draw() {
+	glClear(GL_COLOR_BUFFER_BIT);
+
+	glPushMatrix();
+            glTranslated(0.0,0.0,1.0);
+			glColor3f(0.0, 0.0, 0.0);
+			glRotatef(_angle, x, y, z);
+			glutSolidTorus(0.01, 0.2, 10, 100); // inner radius, outer radius, sides, segments
+	glPopMatrix();
+	glFlush();
+	glutPostRedisplay();
+}
+//
+
+
+
+//
+void Initialize() {
+	glClearColor(1.0, 1.0, 1.0, 1.0);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glOrtho(-1.0, 1.0, -1.0, 1.0, -1.0, 1.0);
+}
+
+int main(int iArgc, char** cppArgv) {
+	glutInit(&iArgc, cppArgv);
+	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+	glutInitWindowSize(600, 600);
+	glutInitWindowPosition(30, 30);
+	glutCreateWindow("Olympic Logo with Rotation");
+	Initialize();
+	glutDisplayFunc(Draw);
+//	glutSpecialFunc(keyboardown);
+//	update(0);
+
+	glutMainLoop();
+	return 0;
+}
