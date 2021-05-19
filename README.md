@@ -1,4 +1,5 @@
 # computer-graphics
 Computer graphics Lab code
-Need Opengl glut
+Need Opengl glut with codeblocks
+
 
